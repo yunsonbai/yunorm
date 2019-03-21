@@ -1,0 +1,10 @@
+.pyc
+*.pyc
+*~
+.codeintel
+*.log
+yuntool.egg-info
+build
+dist
+PKG-INFO
+setup.cfg
