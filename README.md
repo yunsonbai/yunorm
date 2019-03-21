@@ -11,6 +11,10 @@ Yunorm is a small ORM.
 ## Requirements
 * mysqlclient==1.3.14
 
+## Install
+* git clone git@github.com:yunsonbai/yunorm.git
+* python setup.py install
+
 ## Quick Start
  [example](https://github.com/yunsonbai/yunorm/tree/master/example)
 
