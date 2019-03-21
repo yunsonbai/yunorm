@@ -1,6 +1,6 @@
 # yunorm
 
-Yunorm is a small ORM. .
+Yunorm is a small ORM. 
 
 * a small ORM but It's very practical
 * python3.5 and 3.6 (developed with 3.5)
