@@ -1,4 +1,4 @@
-![example](https://github.com/yunsonbai/yunorm/tree/master/yunorm.jpg)
+![imgage](https://github.com/yunsonbai/yunorm/blob/master/yunorm.jpg)
 
 Yunorm is a small ORM. 
 
