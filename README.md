@@ -4,7 +4,7 @@ Yunorm is a small ORM.
 
 * a small ORM but It's very practical
 * python3.5 and 3.6 (developed with 3.5)
-* support mysql
+* support mysql, support mysql connections pool
 * can help you to maintenance the DB connection
 * support to create multiple database connections
 
