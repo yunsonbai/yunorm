@@ -17,13 +17,16 @@ setup(
     version="0.4.0",
     packages=get_packages('yunorm'),
     author="yunsonbai",
-    author_email='1942893504@qq.com',
-    url="http://www.yunsonbai.top",
-    description='Tool integration:db data statistics/diagram/email',
+    author_email='1572120849@qq.com',
+    url="https://github.com/yunsonbai/yunorm",
+    description="A small ORM but It's very practical",
+    license="Apache",
     install_requires=["mysqlclient==1.3.14", "mysql-connector-python==8.0.15"],
     zip_safe=False,
     classifiers=[
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        "License :: OSI Approved :: Apache Software License",
+        'Operating System :: OS Independent',
     ]
 )
