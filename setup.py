@@ -14,13 +14,13 @@ def get_packages(package):
 
 setup(
     name="yunorm",
-    version="0.3.0",
+    version="0.4.0",
     packages=get_packages('yunorm'),
     author="yunsonbai",
     author_email='1942893504@qq.com',
     url="http://www.yunsonbai.top",
     description='Tool integration:db data statistics/diagram/email',
-    install_requires=["mysqlclient==1.3.14"],
+    install_requires=["mysqlclient==1.3.14", "mysql-connector-python==8.0.15"],
     zip_safe=False,
     classifiers=[
         'Programming Language :: Python',

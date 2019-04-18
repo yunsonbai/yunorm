@@ -11,6 +11,7 @@ yunorm/db/__init__.py
 yunorm/db/error.py
 yunorm/db/field.py
 yunorm/db/handler.py
+yunorm/db/handler_old.py
 yunorm/db/models.py
 yunorm/db/sql.py
 yunorm/utils/__init__.py

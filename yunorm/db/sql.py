@@ -18,7 +18,7 @@ class QuerySet(object):
         self.first_line = False
         self.model = model
         self.db_key = model.db_key
-        self.params = kwargs.values()
+        self.params = list(kwargs.values())
         equations = []
         i = 0
         for key in kwargs.keys():
@@ -47,7 +47,8 @@ class QuerySet(object):
     def _datas(self, sql):
         try:
             dbhandler = DbHandlers.get_dbhandler(self.db_key)
-            for row in dbhandler.execute(sql, self.params).fetchall():
+
+            for row in dbhandler.execute(sql, self.params):
                 inst = self.model
                 for idx, f in enumerate(row):
                     setattr(inst, list(self.model.fields.keys())[idx], f)
@@ -120,7 +121,7 @@ class QuerySet(object):
         try:
             if self.first_line:
                 dbhandler = DbHandlers.get_dbhandler(self.db_key)
-                row = dbhandler.execute(sql, self.params).fetchone()
+                row = dbhandler.execute(sql, self.params, fetchall=False)
                 inst = self.model
                 if not row:
                     return row
@@ -142,5 +143,5 @@ class QuerySet(object):
         sql = 'select count(*) from {0} {1};'.format(
             self.model.db_table, self.where_expr)
         dbhandler = DbHandlers.get_dbhandler(self.db_key)
-        (row_cnt, ) = dbhandler.execute(sql, self.params).fetchone()
+        (row_cnt, ) = dbhandler.execute(sql, self.params, fetchall=False)
         return row_cnt
