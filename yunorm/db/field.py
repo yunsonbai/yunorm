@@ -17,27 +17,31 @@ class Field(object):
 
 class CharField(Field):
 
-    def __init__(self, default=None):
-        Field.__init__(self, default=default, field_type='CharField')
+    def __init__(self, default=None, null=False):
+        Field.__init__(self, null=null, default=default,
+                       field_type='CharField')
 
 
 class DecimalField(Field):
 
-    def __init__(self, default=None):
-        Field.__init__(self, default=default, field_type='DecimalField')
+    def __init__(self, default=None, null=False):
+        Field.__init__(self, default=default, null=null,
+                       field_type='DecimalField')
 
 
 class IntegerField(Field):
 
-    def __init__(self, default=None):
+    def __init__(self, default=None, null=False):
         # msyql既然支持int转换,就用一下吧
         default = str(default)
-        Field.__init__(self, default=default, field_type='IntegerField')
+        Field.__init__(self, default=default, null=null,
+                       field_type='IntegerField')
 
 
 class DateTimeField(Field):
 
-    def __init__(self, default=None, auto_now_add=False):
+    def __init__(self, default=None, auto_now_add=False, null=False):
         if auto_now_add:
             default = str(datetime.datetime.now())
-        Field.__init__(self, default=default, field_type='DateTimeField')
+        Field.__init__(self, default=default, null=null,
+                       field_type='DateTimeField')

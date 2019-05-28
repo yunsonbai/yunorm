@@ -61,6 +61,8 @@ class Model(object):
                 if key not in kwargs:
                     if val.default:
                         kwargs[key] = val.default
+                    elif val.null:
+                        kwargs[key] = None
                     else:
                         raise Exception(FEILDNULLRROR.format(key))
         sql = 'insert ignore into {0}({1}) values ("{2}");'.format(

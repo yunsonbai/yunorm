@@ -14,12 +14,13 @@ def get_packages(package):
 
 setup(
     name="yunorm",
-    version="0.4.0",
+    version="0.4.2",
     packages=get_packages('yunorm'),
     author="yunsonbai",
     author_email='1572120849@qq.com',
     url="https://github.com/yunsonbai/yunorm",
     description="A small ORM but It's very practical",
+    long_description="Usage document: https://github.com/yunsonbai/yunorm",
     license="Apache",
     install_requires=["mysqlclient==1.3.14", "mysql-connector-python==8.0.15"],
     zip_safe=False,
