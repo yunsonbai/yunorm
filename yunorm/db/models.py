@@ -65,12 +65,23 @@ class Model(object):
                         kwargs[key] = None
                     else:
                         raise Exception(FEILDNULLRROR.format(key))
-        sql = 'insert ignore into {0}({1}) values ("{2}");'.format(
-            self.db_table, ', '.join(kwargs.keys()),
-            '","'.join([
-                str(kwargs[key]).replace('"', '\'') for key in kwargs.keys()]))
-        result = DbHandlers.get_dbhandler(self.db_key).execute(sql)
+        _keys = []
+        _values = []
+        for key, value in kwargs.items():
+            _keys.append(key)
+            _values.append(value)
+        sql = 'insert into {0}({1}) values ({2});'.format(
+            self.db_table, ','.join(_keys), ','.join(['%s']*len(_keys)))
+        result = DbHandlers.get_dbhandler(self.db_key).execute(sql, _values)
         return result
+
+    def _update_delete_where(self, values, **kwargs):
+        for key, val in kwargs.items():
+            if val is None or key not in self.fields:
+                raise Exception(NORIGHTERROR.format(key))
+        where = 'where {0} = %s'.format(self.pri_field)
+        values.append(self.__dict__[self.pri_field])
+        return where, values
 
     def update(self, **kwargs):
         '''
@@ -79,26 +90,24 @@ class Model(object):
         params:
             dict
         '''
-        for key, val in kwargs.items():
-            if val is None or key not in self.fields:
-                raise Exception(NORIGHTERROR.format(key))
-        where = 'where {0} = {1}'.format(
-            self.pri_field, self.__dict__[self.pri_field])
-        sql = 'update {0} set {1} {2};'.format(self.db_table, ','.join(
-            [key + ' = "{0}"'.format(str(
-                kwargs[key]).replace('"', '\'')) for key in kwargs.keys()]),
-            where)
-        return DbHandlers.get_dbhandler(self.db_key).execute(sql)
+        _values = []
+        _keys = []
+        for key, value in kwargs.items():
+            _keys.append('{0} = %s'.format(key))
+            _values.append(value)
+        where, _values = self._update_delete_where(_values, **kwargs)
+
+        sql = 'update {0} set {1} {2};'.format(
+            self.db_table, ','.join(_keys), where)
+        return DbHandlers.get_dbhandler(self.db_key).execute(sql, _values)
 
     def delete(self, **kwargs):
-        for key, val in kwargs.items():
-            if val is None or key not in self.fields:
-                raise Exception(NORIGHTERROR.format(key))
-        where = 'where {0} = {1}'.format(
-            self.pri_field, self.__dict__[self.pri_field])
+        _values = []
+        where, _values = self._update_delete_where(_values, **kwargs)
         sql = 'delete from {0} {1};'.format(self.db_table, where)
         try:
-            result = DbHandlers.get_dbhandler(self.db_key).execute(sql)
+            result = DbHandlers.get_dbhandler(
+                self.db_key).execute(sql, _values)
             if not result._info:
                 setattr(result, 'success', True)
         except:

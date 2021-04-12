@@ -1,3 +1,0 @@
-yunorm
-yunorm/db
-yunorm/utils

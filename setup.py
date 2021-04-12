@@ -14,7 +14,7 @@ def get_packages(package):
 
 setup(
     name="yunorm",
-    version="0.4.2",
+    version="0.4.3",
     packages=get_packages('yunorm'),
     author="yunsonbai",
     author_email='1572120849@qq.com',

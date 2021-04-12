@@ -18,10 +18,11 @@ class QuerySet(object):
         self.first_line = False
         self.model = model
         self.db_key = model.db_key
-        self.params = list(kwargs.values())
+        self.params = []
         equations = []
         i = 0
-        for key in kwargs.keys():
+        for key, value in kwargs.items():
+            self.params.append(value)
             key_spl = key.split('__')
             if key_spl[-1] == 'in' and not kwargs[key]:
                 raise 'operator in need some data'
@@ -47,7 +48,6 @@ class QuerySet(object):
     def _datas(self, sql):
         try:
             dbhandler = DbHandlers.get_dbhandler(self.db_key)
-
             for row in dbhandler.execute(sql, self.params):
                 inst = self.model
                 for idx, f in enumerate(row):
