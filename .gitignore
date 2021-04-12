@@ -2,8 +2,8 @@
 *.pyc
 *~
 .codeintel
+yunorm.egg-info
 *.log
-yuntool.egg-info
 build
 dist
 PKG-INFO
