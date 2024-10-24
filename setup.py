@@ -22,7 +22,7 @@ setup(
     description="A small ORM but It's very practical",
     long_description="Usage document: https://github.com/yunsonbai/yunorm",
     license="Apache",
-    install_requires=["mysqlclient==1.3.14", "mysql-connector-python==8.0.15"],
+    install_requires=["mysqlclient==1.3.14", "mysql-connector-python==9.1.0"],
     zip_safe=False,
     classifiers=[
         'Programming Language :: Python :: 3.5',
